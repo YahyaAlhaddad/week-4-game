@@ -1,7 +1,10 @@
 // Generate the target number by generating a random number between 19 and 120
- var targetNumber= Math.floor(Math.random() * 100)+19;
+ var targetNumber = Math.floor(Math.random() * 100)+19;
   console.log(targetNumber);
   $("#number-to-guess").text(targetNumber);
+
+  var winsCounter = 0;
+  var lossesCounter = 0;
 
   var counter = 0;
   // Create an array to hold the generated crystal values
@@ -22,16 +25,16 @@
     imageCrystal.addClass("crystal-image");
 
     // Each imageCrystal will be given a src link to the crystal image
-    if (i==0) {
+    if (i == 0) {
       imageCrystal.attr("src", "assets/images/green.jpg");
     }
-      else if (i==1) {
+      else if (i == 1) {
         imageCrystal.attr("src", "assets/images/Purple.jpg");
       }
-       else if (i==2) {
+       else if (i == 2) {
         imageCrystal.attr("src", "assets/images/Red.jpg");
       }
-       else if (i==3) {
+       else if (i == 3) {
         imageCrystal.attr("src", "assets/images/yellow.jpg");
       }
 
@@ -43,39 +46,46 @@
     $("#crystals").append(imageCrystal);
   }
 }
+
 initiate();
+  
   // This time, our click event applies to every single crystal on the page. Not just one.
   // $(".crystal-image").on("click", function() {  
 
    $("#crystals").on("click", ".crystal-image", function() {
       
       var temp = $(this).attr("value");
-      var tempInt= parseInt(temp);
+      var tempInt = parseInt(temp);
       console.log(temp);
-      // var number= crystalValues[tempInt];
+      var number = crystalValues[tempInt];
       
       // console.log(number);
       counter += tempInt;
-      alert("New score: " + counter);
+      $("#score").text(" " + counter);
+      // alert("New score: " + counter);
 
     if (counter === targetNumber) {
-      alert("You win!");
-      counter= 0;
-      crystalValues= [];
+      // alert("You win!");
+      winsCounter++;
+      counter = 0;
+      $("#wins").text(" " + winsCounter);
+      crystalValues = [];
       $("#crystals").empty();
       initiate();
-      targetNumber= Math.floor(Math.random() * 100)+19;
+      targetNumber = Math.floor(Math.random() * 100)+19;
       console.log(targetNumber);
       $("#number-to-guess").text(targetNumber);
     }
 
     else if (counter >= targetNumber) {
-      alert("You lose!!");
-      counter=0;
-      crystalValues=[];
+      // alert("You lose!!");
+      counter = 0;
+      lossesCounter++;
+      $("#losses").text(" " + lossesCounter);
+      crystalValues = [];
       $("#crystals").empty();
       initiate();
-      targetNumber= Math.floor(Math.random() * 100)+19;
+      targetNumber = Math.floor(Math.random() * 100)+19;
       console.log(targetNumber);
       $("#number-to-guess").text(targetNumber);
     }

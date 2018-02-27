@@ -3,3 +3,19 @@
       height: 100px;
       margin: 20px;
     }
+    #stat{
+    	background-color: orange;
+    	padding: 20px;
+    	font-size: 22px;
+    	font-weight: bold;
+    	margin-right: 500px;
+
+    }
+    #number,
+    .name{
+    	margin-left: 150px;
+    }
+/*#crystals{
+	align-content: center;
+	text-align: center;
+}*/
